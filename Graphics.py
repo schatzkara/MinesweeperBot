@@ -118,20 +118,20 @@ class Graphics(tk.Tk):
     #     # if self.bot:
     #     #     self.game.take_turn(None)
 
-    def display_board(self, grid):
+    def display_board(self):
         for row in range(c.BOARD_SIZE):
             for col in range(c.BOARD_SIZE):
-                if grid[row][col] is not None:
-                    value = grid[row][col].get_value()
-                    self.grid_tiles[row][col].configure(text=str(value),
-                                                        bg=c.tile_color_dict[value])
+                if self.game.board.grid[row][col] is not None:
+                    value = self.game.board.grid[row][col].number
+                    self.grid_tiles[row][col].configure(text=str(value))
+                                                        # bg=c.TILE_COLOR)
                                                         # fg=c.text_color_dict[value])
-                else:
-                    self.grid_tiles[row][col].configure(text='',
-                                                        bg=c.tile_color_dict[0])
-                                                        # fg=c.text_color_dict[0])
+                # else:
+                #     self.grid_tiles[row][col].configure(text='',
+                #                                         bg=c.tile_color_dict[0])
+                #                                         # fg=c.text_color_dict[0])
         self.update_idletasks()
-
+        
     # def update_score(self, score):
     #     self.score_value.configure(text=str(score).ljust(8))
     #     self.update_idletasks()
