@@ -6,13 +6,13 @@ import time
 
 
 class Graphics(tk.Tk):
-    def __init__(self, game):
+    def __init__(self, board):
         super().__init__()
         # window
         # self.window = tk.Tk()
         self.title("Minesweeper")
         # self.grid = grid
-        self.game = game
+        self.board = board
         # self.bot = bot
 
         # labels
@@ -89,10 +89,10 @@ class Graphics(tk.Tk):
             self.grid_tiles.append(row_tiles)
 
     def start(self, *args):
-        while not self.game.game_over():
+        while not self.board.dead():
             row = int(input())
             col = int(input())
-            self.game.click_tile(row, col)
+            self.board.click_tile(row, col)
             self.display_board()
 
         self.end_game()
@@ -103,9 +103,9 @@ class Graphics(tk.Tk):
         # print(len(self.grid_tiles[0]))
         for row in range(len(self.grid_tiles)):
             for col in range(len(self.grid_tiles)):
-                if self.game.board.grid[row][col] is not None and self.game.board.grid[row][col].clicked:
-                    print(row, col)
-                    value = self.game.board.grid[row][col].number
+                if self.board.grid[row][col] is not None and self.board.grid[row][col].clicked:
+                    # print(row, col)
+                    value = self.board.grid[row][col].number
                     self.grid_tiles[row][col].configure(text=str(value))
                 else:
                     self.grid_tiles[row][col].configure(text='')
@@ -126,7 +126,7 @@ class Graphics(tk.Tk):
 
     def end_game(self):
         print('here')
-        del self.game
+        del self.board
 
         self.game_over_frame.place(relheight=1 / 4, relwidth=3 / 4,
                                    relx=0.5, rely=0.5, anchor=tk.CENTER)
@@ -144,7 +144,7 @@ class Graphics(tk.Tk):
         #wraps the 2 functions so that clicking a button can
         #actually click the tile and update how the board looks
         print('clicking')
-        self.game.click_tile(row, col)
+        self.board.click_tile(row, col)
         self.display_board()
 
 
