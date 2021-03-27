@@ -1,4 +1,4 @@
-from Game import Game
+from Board import Board
 from Graphics import Graphics
 import keyboard
 from constants import *
@@ -9,8 +9,8 @@ from constants import *
 
 class Driver:
     def __init__(self):
-        self.game = Game(BOARD_SIZE, MINE_LOCATIONS)
-        self.gui = Graphics(self.game)
+        self.board = Board(BOARD_SIZE, MINE_LOCATIONS)
+        self.gui = Graphics(self.board)
         self.gui.mainloop()
         # self.play()
 

@@ -14,7 +14,7 @@ class Board:
     def __init__(self, size, mine_locations):
         self.size = size
         self.grid = [[None for x in range(self.size)] for y in range(self.size)]
-        # self.init_grid(mine_locations)
+        self.init_grid(mine_locations)
         # self.display()
 
     def init_grid(self, mine_locations):
