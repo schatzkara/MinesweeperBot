@@ -76,7 +76,7 @@ class Graphics(tk.Tk):
                                 height=c.WINDOW_HEIGHT / c.BOARD_SIZE)
                 tile.grid(row=row, column=col,
                           padx=c.TILE_PADX, pady=c.TILE_PADY)
-                value = tk.Button(tile, text="", command=self.game.click_tile(row, col),  width=c.TILE_WIDTH, height=c.TILE_HEIGHT)
+                value = tk.Button(tile, text="", command=self.button_click(row, col),  width=c.TILE_WIDTH, height=c.TILE_HEIGHT)
                 # tk.Label(tile,
                 #                  text='',
                 #                  bg=c.tile_color_dict[0],
@@ -164,6 +164,13 @@ class Graphics(tk.Tk):
 
         self.bind("<s>", self.start)
         self.start_button["state"] = "normal"
+
+    def button_click(self, row, col):
+        #wraps the 2 functions so that clicking a button can
+        #actually click the tile and update how the board looks
+        self.game.click_tile(row, col)
+        self.display_board()
+
 
 # if __name__ == "__main__":
 #     Graphics(bot=True, heuristic=c.HIGHSCORE)
