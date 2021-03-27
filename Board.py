@@ -63,3 +63,12 @@ class Board:
                     return True
 
         return False
+
+
+    def win(self):
+        for row in range(len(self.grid)):
+            for col in range(len(self.grid[row])):
+                if self.grid[row][col] is not None and (not self.grid[row][col].isMine) and (not self.grid[row][col].clicked):
+                    return False
+
+        return True

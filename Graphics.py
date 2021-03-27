@@ -89,7 +89,7 @@ class Graphics(tk.Tk):
             self.grid_tiles.append(row_tiles)
 
     def start(self, *args):
-        while not self.board.dead():
+        while not self.board.dead() or self.board.win():
             row = int(input())
             col = int(input())
             self.board.click_tile(row, col)
@@ -126,13 +126,27 @@ class Graphics(tk.Tk):
 
     def end_game(self):
         print('here')
+        #Check if we've won or lost the game (-1 for lose, 1 for win)
+        win_or_lose = 0
+        if self.board.dead():
+            win_or_lose = -1
+
+        if self.board.win():
+            win_or_lose = 1    
+
+
         del self.board
 
         self.game_over_frame.place(relheight=1 / 4, relwidth=3 / 4,
                                    relx=0.5, rely=0.5, anchor=tk.CENTER)
         self.game_over_frame.lift()
         # value.place(anchor=tk.CENTER)
-        self.game_over.configure(text='GAME OVER')
+        if win_or_lose == -1:
+            self.game_over.configure(text='GAME OVER')
+
+        if win_or_lose == 1:
+            self.game_over.configure(text='YOU WON! :)')
+        
         self.game_over.place(relheight=1, relwidth=1,
                              relx=0.5, rely=0.5, anchor=tk.CENTER)
         # value.grid()
