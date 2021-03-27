@@ -89,7 +89,7 @@ class Graphics(tk.Tk):
             self.grid_tiles.append(row_tiles)
 
     def start(self, *args):
-        while not self.board.dead() or self.board.win():
+        while not (self.board.dead() or self.board.win()):
             row = int(input())
             col = int(input())
             self.board.click_tile(row, col)

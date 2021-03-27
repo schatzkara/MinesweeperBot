@@ -64,11 +64,16 @@ class Board:
 
         return False
 
-
     def win(self):
+        num_clicked_not_mine = 0
         for row in range(len(self.grid)):
             for col in range(len(self.grid[row])):
-                if self.grid[row][col] is not None and (not self.grid[row][col].isMine) and (not self.grid[row][col].clicked):
-                    return False
+                if not self.grid[row][col].isMine and self.grid[row][col].clicked:
+                    num_clicked_not_mine += 1
+                # if self.grid[row][col] is not None:
+                #     if self.grid[row][col].isMine and self.grid[row][col].clicked:
+                #         return False
+                #     if not self.grid[row][col].isMine and not self.grid[row][col].clicked:
+                #         return False
 
-        return True
+        return (num_clicked_not_mine + NUM_MINES) == (self.size * self.size)
