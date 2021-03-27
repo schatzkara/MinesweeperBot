@@ -6,14 +6,14 @@ import time
 
 
 class Graphics(tk.Tk):
-    def __init__(self, board):
+    def __init__(self, board, bot):
         super().__init__()
         # window
         # self.window = tk.Tk()
         self.title("Minesweeper")
         # self.grid = grid
         self.board = board
-        # self.bot = bot
+        self.bot = bot
 
         # labels
         self.header = tk.Frame(self, bg=c.BOARD_COLOR,
@@ -90,8 +90,12 @@ class Graphics(tk.Tk):
 
     def start(self, *args):
         while not (self.board.dead() or self.board.win()):
-            row = int(input())
-            col = int(input())
+            if self.bot is None:
+                row = int(input())
+                col = int(input())
+            else:
+                row, col = self.bot.get_action()
+            time.sleep(0.5)
             self.board.click_tile(row, col)
             self.display_board()
 

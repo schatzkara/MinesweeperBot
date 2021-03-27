@@ -1,5 +1,6 @@
 from Board import Board
 from Graphics import Graphics
+from Rando_Bot import Rando_Bot
 import keyboard
 from constants import *
 
@@ -10,7 +11,8 @@ from constants import *
 class Driver:
     def __init__(self):
         self.board = Board(BOARD_SIZE, MINE_LOCATIONS)
-        self.gui = Graphics(self.board)
+        self.bot = Rando_Bot(BOARD_SIZE)
+        self.gui = Graphics(self.board, self.bot)
         self.gui.mainloop()
         # self.play()
 
