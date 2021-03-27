@@ -12,7 +12,7 @@ class Graphics(tk.Tk):
         # self.window = tk.Tk()
         self.title("Minesweeper")
         # self.grid = grid
-        # self.game = None  # Game(4, 2)
+        self.game = Game(4)
         self.bot = bot
 
         # labels
@@ -76,7 +76,7 @@ class Graphics(tk.Tk):
                                 height=c.WINDOW_HEIGHT / c.BOARD_SIZE)
                 tile.grid(row=row, column=col,
                           padx=c.TILE_PADX, pady=c.TILE_PADY)
-                value = tk.Button(tile, text="", command=None,  width=c.TILE_WIDTH, height=c.TILE_HEIGHT)
+                value = tk.Button(tile, text="", command=game.click_tile(row, col),  width=c.TILE_WIDTH, height=c.TILE_HEIGHT)
                 # tk.Label(tile,
                 #                  text='',
                 #                  bg=c.tile_color_dict[0],
@@ -89,7 +89,10 @@ class Graphics(tk.Tk):
             self.grid_tiles.append(row_tiles)
 
     def start(self, *args):
-        return
+        while not game.game_over():
+            continue
+
+        self.end_game()    
     #     print('here')
     #     self.unbind("<s>")
     #     self.start_button["state"] = "disable"
