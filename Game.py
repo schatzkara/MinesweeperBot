@@ -7,7 +7,7 @@ class Game:
         self.size = size
         self.board = Board(size, mine_locations)
         self.init_board(mine_locations)
-        self.board.display()
+        # self.board.display()
 
     def init_board(self, mine_locations):     
         self.board.init_grid(mine_locations)

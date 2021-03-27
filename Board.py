@@ -22,7 +22,7 @@ class Board:
             self.grid[row][col] = Tile(position=(row, col), number=MINE_VAL)
 
         for row in range(len(self.grid)):
-            for tile in range(len(self.grid[row])):
+            for col in range(len(self.grid[row])):
                 if self.grid[row][col] is None:
                     self.grid[row][col] = Tile(position=(row, col), number=len(self.adjacent_mines(row, col)))
 

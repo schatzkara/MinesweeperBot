@@ -76,65 +76,40 @@ class Graphics(tk.Tk):
                                 height=c.WINDOW_HEIGHT / c.BOARD_SIZE)
                 tile.grid(row=row, column=col,
                           padx=c.TILE_PADX, pady=c.TILE_PADY)
-                value = tk.Button(tile, text="", command=self.button_click(row, col),  width=c.TILE_WIDTH, height=c.TILE_HEIGHT)
-                # tk.Label(tile,
-                #                  text='',
-                #                  bg=c.tile_color_dict[0],
-                #                  justify=tk.CENTER,
-                #                  font=c.TILE_FONT,
-                #                  width=c.TILE_WIDTH,
-                #                  height=c.TILE_HEIGHT)
+                # value = tk.Button(tile, text="", command= lambda: self.button_click(row, col), width=c.TILE_WIDTH, height=c.TILE_HEIGHT)
+                value = tk.Label(tile,
+                                 text='',
+                                 bg=c.tile_color_dict[0],
+                                 justify=tk.CENTER,
+                                 font=c.TILE_FONT,
+                                 width=c.TILE_WIDTH,
+                                 height=c.TILE_HEIGHT)
                 value.grid(column=col, row=row)
                 row_tiles.append(value)
             self.grid_tiles.append(row_tiles)
 
     def start(self, *args):
         while not self.game.game_over():
-            continue
+            row = int(input())
+            col = int(input())
+            self.game.click_tile(row, col)
+            self.display_board()
 
-        self.end_game()    
-    #     print('here')
-    #     self.unbind("<s>")
-    #     self.start_button["state"] = "disable"
-
-    #     # self.game_over.master.destroy()
-    #     self.game_over.place_forget()
-    #     self.game_over.configure(text=' ')
-    #     # self.game_over.place(relheight=1, relwidth=1,
-    #     #                      relx=0.5, rely=0.5, anchor=tk.CENTER)
-    #     self.game_over_frame.place_forget()
-
-    #     if self.bot:
-    #         self.game = Bot(size=c.BOARD_SIZE, start_tiles=c.INIT_TILES,
-    #                         look_ahead=self.look_ahead, trials=self.trials, heuristic=self.heuristic,
-    #                         log=self.log)
-    #     else:
-    #         self.game = Game(size=c.BOARD_SIZE, start_tiles=c.INIT_TILES)
-
-    #     self.display_board(self.game.get_board().get_grid())
-    #     # key binding
-    #     # self.bind("<Key>", self.take_turn)
-    #     # self.play(g)
-    #     # if self.bot:
-    #     #     self.game.take_turn(None)
+        self.end_game()
 
     def display_board(self):
-        for row in range(c.BOARD_SIZE):
-            for col in range(c.BOARD_SIZE):
-                if self.game.board.grid[row][col] is not None:
+        # print(self.grid_tiles)
+        # print(len(self.grid_tiles))
+        # print(len(self.grid_tiles[0]))
+        for row in range(len(self.grid_tiles)):
+            for col in range(len(self.grid_tiles)):
+                if self.game.board.grid[row][col] is not None and self.game.board.grid[row][col].clicked:
+                    print(row, col)
                     value = self.game.board.grid[row][col].number
                     self.grid_tiles[row][col].configure(text=str(value))
-                                                        # bg=c.TILE_COLOR)
-                                                        # fg=c.text_color_dict[value])
-                # else:
-                #     self.grid_tiles[row][col].configure(text='',
-                #                                         bg=c.tile_color_dict[0])
-                #                                         # fg=c.text_color_dict[0])
+                else:
+                    self.grid_tiles[row][col].configure(text='')
         self.update_idletasks()
-        
-    # def update_score(self, score):
-    #     self.score_value.configure(text=str(score).ljust(8))
-    #     self.update_idletasks()
 
     # def take_turn(self, event):
     #     direction = event.keysym.lower()
@@ -168,6 +143,7 @@ class Graphics(tk.Tk):
     def button_click(self, row, col):
         #wraps the 2 functions so that clicking a button can
         #actually click the tile and update how the board looks
+        print('clicking')
         self.game.click_tile(row, col)
         self.display_board()
 
