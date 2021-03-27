@@ -1,7 +1,7 @@
 from Game import Game
 from Graphics import Graphics
 import keyboard
-import constants as c
+from constants import *
 
 # BOARD_SIZE = 4
 # START_TILES = 2
@@ -9,8 +9,8 @@ import constants as c
 
 class Driver:
     def __init__(self):
-        self.game = Game(c.BOARD_SIZE, c.INIT_TILES)
-        self.gui = Graphics(self.game.get_board())
+        self.game = Game(BOARD_SIZE, MINE_LOCATIONS)
+        self.gui = Graphics(self.game)
         self.gui.mainloop()
         # self.play()
 

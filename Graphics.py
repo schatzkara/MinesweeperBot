@@ -6,14 +6,14 @@ import time
 
 
 class Graphics(tk.Tk):
-    def __init__(self, bot):
+    def __init__(self, game):
         super().__init__()
         # window
         # self.window = tk.Tk()
         self.title("Minesweeper")
         # self.grid = grid
-        self.game = Game(4)
-        self.bot = bot
+        self.game = game
+        # self.bot = bot
 
         # labels
         self.header = tk.Frame(self, bg=c.BOARD_COLOR,
@@ -76,7 +76,7 @@ class Graphics(tk.Tk):
                                 height=c.WINDOW_HEIGHT / c.BOARD_SIZE)
                 tile.grid(row=row, column=col,
                           padx=c.TILE_PADX, pady=c.TILE_PADY)
-                value = tk.Button(tile, text="", command=game.click_tile(row, col),  width=c.TILE_WIDTH, height=c.TILE_HEIGHT)
+                value = tk.Button(tile, text="", command=self.game.click_tile(row, col),  width=c.TILE_WIDTH, height=c.TILE_HEIGHT)
                 # tk.Label(tile,
                 #                  text='',
                 #                  bg=c.tile_color_dict[0],
@@ -89,7 +89,7 @@ class Graphics(tk.Tk):
             self.grid_tiles.append(row_tiles)
 
     def start(self, *args):
-        while not game.game_over():
+        while not self.game.game_over():
             continue
 
         self.end_game()    
