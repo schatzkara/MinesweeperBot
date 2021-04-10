@@ -35,8 +35,18 @@ class KBA:
 	def substitute(self, substitutions, sentence):
 
 
-	def unify(self, substitutions, sentence):
-		return None
+	def unify(self, sentence1, sentence2, substitution):
+		'''if substitution == None:
+			return None
+		elif sentence1 == sentence2:
+			return substitution
+		elif self.is_variable(sentence1):
+			return unify_var(sentence1, sentence2, substitution)
+		elif self.is_variable(sentence2):
+			return unify_var(sentence2, sentence1, substitution)
+		elif self.is_compound(x) and self.is_compound(y):
+			return unify(x.)'''
+
 
 	def standardize_variables(self, sentence):
 
@@ -49,6 +59,14 @@ class KBA:
 				r = standardize_variables(r)
 				for 
 '''
+	def unify_var(self, variable1, variable2):
+
+
+	def is_variable(self, sentence):
+
+
+	def is_compound(self, sentence):
+
 
 	def fetch_rules(self, goal):
 
