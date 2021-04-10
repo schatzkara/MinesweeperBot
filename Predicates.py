@@ -21,6 +21,13 @@ class Clicked:
     def __eq__(self, other):
         return isinstance(other, Clicked) and self.tile == other.tile
 
+class Zero:
+    def __init__(self, tile):
+        self.tile = tile
+
+    def __eq__(self, other):
+        return isinstance(other, Zero) and self.tile == other.tile
+
 class One:
     def __init__(self, tile):
         self.tile = tile
