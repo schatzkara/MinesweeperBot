@@ -1,6 +1,7 @@
 
 class Predicates(Enum):
-    CLICKED = 0
+    CLICKED = -1
+    ZERO = 0
     ONE = 1
     TWO = 2
     THREE = 3
@@ -17,6 +18,7 @@ class Predicates(Enum):
 class Clicked:
     def __init__(self, tile):
         self.tile = tile
+        self.predicate = Predicates.CLICKED
 
     def __eq__(self, other):
         return isinstance(other, Clicked) and self.tile == other.tile
@@ -24,6 +26,7 @@ class Clicked:
 class Zero:
     def __init__(self, tile):
         self.tile = tile
+        self.predicate = Predicates.ZERO
 
     def __eq__(self, other):
         return isinstance(other, Zero) and self.tile == other.tile
@@ -31,6 +34,7 @@ class Zero:
 class One:
     def __init__(self, tile):
         self.tile = tile
+        self.predicate = Predicates.ONE
 
     def __eq__(self, other):
         return isinstance(other, One) and self.tile == other.tile
@@ -38,6 +42,7 @@ class One:
 class Two:
     def __init__(self, tile):
         self.tile = tile
+        self.predicate = Predicates.TWO
 
     def __eq__(self, other):
         return isinstance(other, Two) and self.tile == other.tile
@@ -45,6 +50,7 @@ class Two:
 class Three:
     def __init__(self, tile):
         self.tile = tile
+        self.predicate = Predicates.THREE
 
     def __eq__(self, other):
         return isinstance(other, Three) and self.tile == other.tile
@@ -52,6 +58,7 @@ class Three:
 class Sat:
     def __init__(self, tile):
         self.tile = tile
+        self.predicate = Predicates.SAT
 
     def __eq__(self, other):
         return isinstance(other, Sat) and self.tile == other.tile
@@ -59,6 +66,7 @@ class Sat:
 class Mine:
     def __init__(self, tile):
         self.tile = tile
+        self.predicate = Predicates.MINE
 
     def __eq__(self, other):
         return isinstance(other, Mine) and self.tile == other.tile
@@ -67,6 +75,7 @@ class Diff():
     def __init__(self, tile1, tile2):
     	self.tile1 = tile1
     	self.tile2 = tile2
+        self.predicate = Predicates.DIFF
 
     def __eq__(self, other):
     	return isinstance(other, Diff) and self.tile1 == other.tile1 and self.tile2 == other.tile2
@@ -75,6 +84,7 @@ class Adj():
     def __init__(self, tile1, tile2):
         self.tile1 = tile1
         self.tile2 = tile2
+        self.predicate = Predicates.ADJ
 
      def __eq__(self, other):
         return isinstance(other, Adj) and self.tile1 == other.tile1 and self.tile2 == other.tile2
@@ -83,6 +93,7 @@ class AdjMine():
 	def __init__(self, tile1, tile2):
     	self.tile1 = tile1
     	self.tile2 = tile2
+        self.predicate = Predicates.ADJ_MINE
 
      def __eq__(self, other):
     	return isinstance(other, AdjMine) and self.tile1 == other.tile1 and self.tile2 == other.tile2
@@ -91,6 +102,7 @@ class AdjClicked():
 	def __init__(self, tile1, tile2):
     	self.tile1 = tile1
     	self.tile2 = tile2
+        self.predicate = Predicates.ADJ_CLICKED
 
      def __eq__(self, other):
     	return isinstance(other, AdjClicked) and self.tile1 == other.tile1 and self.tile2 == other.tile2
@@ -98,6 +110,7 @@ class AdjClicked():
 class NumAdj():
 	def __init__(self, tile):
     	self.tile = tile
+        self.predicate = Predicates.NUM_ADJ
 
      def __eq__(self, other):
     	return isinstance(other, NumAdj) and self.tile == other.tile
@@ -105,6 +118,7 @@ class NumAdj():
 class NumAdjMines():
 	def __init__(self, tile):
     	self.tile = tile
+        self.predicate = Predicates.NUM_ADJ_MINES
 
      def __eq__(self, other):
     	return isinstance(other, NumAdjMines) and self.tile == other.tile
@@ -112,6 +126,7 @@ class NumAdjMines():
 class NumAdjClicked():
 	def __init__(self, tile):
     	self.tile = tile
+        self.predicate = Predicates.NUM_ADJ_CLICKED
 
      def __eq__(self, other):
     	return isinstance(other, NumAdjClicked) and self.tile == other.tile
