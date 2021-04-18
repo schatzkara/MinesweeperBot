@@ -2,7 +2,6 @@ from gui_constants import *
 from enum import Enum
 
 class Preds(Enum):
-	# CLICKED = -1
 	ZERO = 0
 	ONE = 1
 	TWO = 2
@@ -15,13 +14,6 @@ class Preds(Enum):
 	EQUAL = 9
 	NOT_EQUAL = 10
 	COUNT = 11
-	# DIFF = 7
-	# ADJ = 8
-	# ADJ_MINE = 9
-	# ADJ_CLICKED = 10
-	# NUM_ADJ = 11
-	# NUM_ADJ_MINES = 12
-	# NUM_ADJ_CLICKED = 13
 
 def sat(tile, number, mines):
 	return number == num_adj_mine(tile, mines)

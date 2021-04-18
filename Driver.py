@@ -1,33 +1,21 @@
 from Board import Board
 from Graphics import Graphics
 from Rando_Bot import Rando_Bot
+from KBA import KBA
 import keyboard
-from constants import *
-
-# BOARD_SIZE = 4
-# START_TILES = 2
-
+import random
+from gui_constants import *
 
 class Driver:
     def __init__(self):
-        self.board = Board(BOARD_SIZE, MINE_LOCATIONS)
-        self.bot = Rando_Bot(BOARD_SIZE)
+        board_size = int(input('What number of rows and columns would you like? '))
+        num_mines = int(input('How many mines would you like out of the {} tiles? '.format(board_size**2)))
+        self.board = Board(board_size, num_mines)
+        # self.bot = Rando_Bot(BOARD_SIZE)
+        self.bot = KBA(board_size)
         self.gui = Graphics(self.board, self.bot)
         self.gui.mainloop()
-        # self.play()
-
-    # def play(self):
-    #     while not self.game.game_over():
-    #         direction = keyboard.read_key()
-    #         self.game.take_turn(direction)
-    #         self.gui.display_board(self.game.get_board())
-
-    # def start_game(self):
-    #     self.game = Game(BOARD_SIZE, START_TILES)
 
 
 if __name__ == "__main__":
     Driver()
-#     game = Game(BOARD_SIZE, START_TILES)
-#     gui = Graphics()
-

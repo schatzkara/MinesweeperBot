@@ -1,7 +1,7 @@
 BOARD_SIZE = 4
 MINE_VAL = float('inf')
 
-MINE_LOCATIONS = [(0, 0), (1, 2), (2, 1)]
+MINE_LOCATIONS = [(0, 0), (1, 2)]  # , (2, 1)]
 NUM_MINES = len(MINE_LOCATIONS)
 
 
