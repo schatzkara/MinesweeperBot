@@ -5,6 +5,7 @@ from KBA import KBA
 import keyboard
 import random
 from gui_constants import *
+import time
 
 class Driver:
     def __init__(self):
@@ -13,8 +14,12 @@ class Driver:
         self.board = Board(board_size, num_mines)
         # self.bot = Rando_Bot(BOARD_SIZE)
         self.bot = KBA(board_size)
+        start = time.time()
         self.gui = Graphics(self.board, self.bot)
         self.gui.mainloop()
+        end = time.time()
+
+        print(end - start)
 
 
 if __name__ == "__main__":
