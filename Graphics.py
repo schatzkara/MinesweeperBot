@@ -67,6 +67,7 @@ class Graphics(tk.Tk):
 			self.grid_tiles.append(row_tiles)
 
 	def start(self, *args):
+		start_time = time.time()
 		while not (self.board.dead() or self.board.win()):
 			if self.bot is None:
 				row = int(input())
@@ -80,6 +81,8 @@ class Graphics(tk.Tk):
 			self.display_board(True)
 
 		self.end_game()
+		end_time = time.time()
+		print(f'{end - start} seconds')
 
 	def display_board(self, clicked=True):
 		for row in range(self.board_size):
