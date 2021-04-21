@@ -103,11 +103,11 @@ class KBA:
 				count = (Preds.COUNT, )
 				for k, l in adjacent_tiles:
 					count += ((Preds.MINE, k, l), )
-					self.rules[Preds.SAT].append(Rule(lhs=[(Preds.TWO, i, j), (Preds.EQUAL, 2, count)], rhs=(Preds.SAT, i, j)))
+				self.rules[Preds.SAT].append(Rule(lhs=[(Preds.TWO, i, j), (Preds.EQUAL, 2, count)], rhs=(Preds.SAT, i, j)))
 				count = (Preds.COUNT, )
 				for k, l in adjacent_tiles:
 					count += ((Preds.MINE, k, l), )
-					self.rules[Preds.SAT].append(Rule(lhs=[(Preds.THREE, i, j), (Preds.EQUAL, 3, count)], rhs=(Preds.SAT, i, j)))
+				self.rules[Preds.SAT].append(Rule(lhs=[(Preds.THREE, i, j), (Preds.EQUAL, 3, count)], rhs=(Preds.SAT, i, j)))
 								
 				for k, l in adjacent_tiles:
 					count = (Preds.COUNT, )
