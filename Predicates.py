@@ -1,4 +1,4 @@
-from gui_constants import *
+from Constants import *
 from enum import Enum
 
 class Preds(Enum):
@@ -12,8 +12,8 @@ class Preds(Enum):
 	MINE = 7
 	NOT_MINE = 8
 	EQUAL = 9
-	NOT_EQUAL = 10
-	COUNT = 11
+	# NOT_EQUAL = 10
+	COUNT = 10
 
 def sat(tile, number, mines):
 	return number == num_adj_mine(tile, mines)

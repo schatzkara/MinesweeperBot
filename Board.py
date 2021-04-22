@@ -1,6 +1,6 @@
 import random
 from Tile import Tile
-from gui_constants import *
+from Constants import *
 
 
 class Board:

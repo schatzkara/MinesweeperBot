@@ -1,7 +1,7 @@
 import tkinter as tk
 # from game import Game
 # from bot import Bot
-import gui_constants as c
+import Constants as c
 import time
 
 
@@ -15,27 +15,27 @@ class Graphics(tk.Tk):
 		self.bot = bot
 
 		# labels
-		self.header = tk.Frame(self, bg=c.BOARD_COLOR, width=c.WINDOW_WIDTH, height=c.WINDOW_HEIGHT)
+		self.header = tk.Frame(self, bg=BOARD_COLOR, width=WINDOW_WIDTH, height=WINDOW_HEIGHT)
 		self.header.grid(column=0, row=0)
 
-		label = tk.Label(self.header, text="Minesweeper", font=c.TITLE_FONT)
+		label = tk.Label(self.header, text="Minesweeper", font=TITLE_FONT)
 		label.grid(column=0, row=0)
 
-		dummy = tk.Label(self.header, text="                 ", font=c.TITLE_FONT)
+		dummy = tk.Label(self.header, text="                 ", font=TITLE_FONT)
 		dummy.grid(column=1, row=0)
 		dummy.grid(column=2, row=0)
 
-		num_mins_label = tk.Label(self.header, text="Num Mines:", font=c.TITLE_FONT)
+		num_mins_label = tk.Label(self.header, text="Num Mines:", font=TITLE_FONT)
 		num_mins_label.grid(column=3, row=0)
 
-		self.num_mines_value = tk.Label(self.header, text=str(self.num_mines).ljust(8), font=c.TITLE_FONT)
+		self.num_mines_value = tk.Label(self.header, text=str(self.num_mines).ljust(8), font=TITLE_FONT)
 		self.num_mines_value.grid(column=4, row=0)
 
 		# key binding
 		self.bind("<s>", self.start)
 
 		self.grid_tiles = []
-		self.background = tk.Frame(self, bg=c.BOARD_COLOR, width=c.WINDOW_WIDTH, height=c.WINDOW_HEIGHT)
+		self.background = tk.Frame(self, bg=BOARD_COLOR, width=WINDOW_WIDTH, height=WINDOW_HEIGHT)
 
 		self.init_board()
 
@@ -43,10 +43,10 @@ class Graphics(tk.Tk):
 		self.start_button = tk.Button(self, text="Start Game", command=self.start)
 		self.start_button.grid(column=0, row=1)
 
-		self.game_over_frame = tk.Frame(self.background, bg=c.BOARD_COLOR, width=c.WINDOW_WIDTH, height=c.WINDOW_HEIGHT)
+		self.game_over_frame = tk.Frame(self.background, bg=BOARD_COLOR, width=WINDOW_WIDTH, height=WINDOW_HEIGHT)
 
-		self.game_over = tk.Label(self.game_over_frame, text='GAME OVER', bg=c.BOARD_COLOR, justify=tk.CENTER, 
-								  font=c.TILE_FONT, width=6, height=4)
+		self.game_over = tk.Label(self.game_over_frame, text='GAME OVER', bg=BOARD_COLOR, justify=tk.CENTER, 
+								  font=TILE_FONT, width=6, height=4)
 
 		self.background.grid(column=0, row=2)
 
@@ -57,11 +57,11 @@ class Graphics(tk.Tk):
 		for row in range(self.board_size):
 			row_tiles = []
 			for col in range(self.board_size):
-				tile = tk.Frame(self.background, bg=c.tile_color_dict[0],
-								width=c.WINDOW_WIDTH / self.board_size, height=c.WINDOW_HEIGHT / self.board_size)
-				tile.grid(row=row, column=col, padx=c.TILE_PADX, pady=c.TILE_PADY)
-				value = tk.Label(tile, text='', bg=c.tile_color_dict[0], justify=tk.CENTER,
-								 font=c.TILE_FONT, width=c.TILE_WIDTH, height=c.TILE_HEIGHT)
+				tile = tk.Frame(self.background, bg=TILE_COLOR,
+								width=WINDOW_WIDTH / self.board_size, height=WINDOW_HEIGHT / self.board_size)
+				tile.grid(row=row, column=col, padx=TILE_PADX, pady=TILE_PADY)
+				value = tk.Label(tile, text='', bg=TILE_COLOR, justify=tk.CENTER,
+								 font=TILE_FONT, width=TILE_WIDTH, height=TILE_HEIGHT)
 				value.grid(column=col, row=row)
 				row_tiles.append(value)
 			self.grid_tiles.append(row_tiles)
@@ -82,7 +82,7 @@ class Graphics(tk.Tk):
 
 		self.end_game()
 		end_time = time.time()
-		print(f'{end - start} seconds')
+		print(f'{end_time - start_time} seconds')
 
 	def display_board(self, clicked=True):
 		for row in range(self.board_size):
