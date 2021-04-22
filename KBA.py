@@ -7,6 +7,7 @@ from Rule import Rule
 class KBA:
 	'''Constructor for the KBA, which initializes the knowledge base (KB).
 	The KB consists of two dictionaries: one containing facts (atomic sentences) and another containing rules (Horn clauses) 
+	:param size: (int) the size of the board
 	'''
 	def __init__(self, size):
 		self.board_size = size
@@ -129,11 +130,12 @@ class KBA:
 			for j in range(self.board_size):
 				adjacent_tiles = self.get_adjacent_tiles((i, j))
 
+				# rules for deducing NOT_MINE
 				for k, l in adjacent_tiles:
 					self.rules[Preds.NOT_MINE].append(Rule(lhs=[(Preds.SAT, k, l), ('not', Preds.MINE, i, j)], rhs=(Preds.NOT_MINE, i, j)))
 				
+				# rules for deducing SAT
 				self.rules[Preds.SAT].append(Rule(lhs=[(Preds.ZERO, i, j)], rhs=(Preds.SAT, i, j)))
-
 				count = (Preds.COUNT, )
 				for k, l in adjacent_tiles:
 					count += ((Preds.MINE, k, l), )
@@ -147,6 +149,7 @@ class KBA:
 					count += ((Preds.MINE, k, l), )
 				self.rules[Preds.SAT].append(Rule(lhs=[(Preds.THREE, i, j), (Preds.EQUAL, 3, count)], rhs=(Preds.SAT, i, j)))
 								
+				# rules for deducing MINE
 				for k, l in adjacent_tiles:
 					count = (Preds.COUNT, )
 					adjacent_tiles2 = self.get_adjacent_tiles((k, l))
@@ -200,7 +203,7 @@ class KBA:
 		elif pred in [Preds.SAT, Preds.UNSAT, Preds.MINE, Preds.NOT_MINE]:
 			return self.fact_check(sentence) or self.backward_chain(sentence)
 
-		# these predicates get handled specially
+		# this predicate get handled specially
 		elif pred == Preds.EQUAL:
 			x, y = sentence[1], sentence[2]
 			return self.equal(x, y)
@@ -209,6 +212,7 @@ class KBA:
 		# 	x, y = sentence[1], sentence[2]
 		# 	return self.not_equal(x, y)
 				
+		# this predicate gets handled specially too
 		elif pred == Preds.COUNT:
 			return self.count(sentence[1:])
 

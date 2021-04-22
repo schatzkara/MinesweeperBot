@@ -1,11 +1,17 @@
 import tkinter as tk
 # from game import Game
 # from bot import Bot
-import Constants as c
+from Constants import *
 import time
 
 
+'''A class to hold the graphical user interface for the Minesweeper game.
+'''
 class Graphics(tk.Tk):
+	'''Constructor for the Graphics class.
+	:param board: the board for the game
+	:param bot: the bot to play the game
+	'''
 	def __init__(self, board, bot):
 		super().__init__()
 		self.title("Minesweeper")
@@ -53,6 +59,8 @@ class Graphics(tk.Tk):
 		# start the window running
 		self.mainloop()
 
+	'''Initializes the board in the GUI by creating the appropriate number of blank tiles.
+	'''
 	def init_board(self):
 		for row in range(self.board_size):
 			row_tiles = []
@@ -66,6 +74,9 @@ class Graphics(tk.Tk):
 				row_tiles.append(value)
 			self.grid_tiles.append(row_tiles)
 
+	'''Runs the game. Gets triggered when the "start game" button is clicked.
+	Allows the bot to continue choosing moves until the game is over.
+	'''
 	def start(self, *args):
 		start_time = time.time()
 		while not (self.board.dead() or self.board.win()):
@@ -84,6 +95,9 @@ class Graphics(tk.Tk):
 		end_time = time.time()
 		print(f'{end_time - start_time} seconds')
 
+	'''Displays the board on the GUI. Shows the number inside the visible tiles; all other tiles appear blank.
+	:param clicked: (boolean) True if only the clicked tiles should be shown, False otherwise
+	'''
 	def display_board(self, clicked=True):
 		for row in range(self.board_size):
 			for col in range(self.board_size):
@@ -99,6 +113,8 @@ class Graphics(tk.Tk):
 					self.grid_tiles[row][col].configure(text='')
 		self.update_idletasks()
 
+	'''Ends the game and displays the appropriate win/loss message.
+	'''
 	def end_game(self):
 		# Check if we've won or lost the game (-1 for lose, 1 for win)
 		win_or_lose = 0
@@ -126,9 +142,9 @@ class Graphics(tk.Tk):
 
 		del self.board
 
-	def button_click(self, row, col):
-		# wraps the 2 functions so that clicking a button can
-		# actually click the tile and update how the board looks
-		# print('clicking')
-		self.board.click_tile(row, col)
-		self.display_board()
+	# def button_click(self, row, col):
+	# 	# wraps the 2 functions so that clicking a button can
+	# 	# actually click the tile and update how the board looks
+	# 	# print('clicking')
+	# 	self.board.click_tile(row, col)
+	# 	self.display_board()

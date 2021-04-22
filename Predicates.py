@@ -15,96 +15,96 @@ class Preds(Enum):
 	# NOT_EQUAL = 10
 	COUNT = 10
 
-def sat(tile, number, mines):
-	return number == num_adj_mine(tile, mines)
+# def sat(tile, number, mines):
+# 	return number == num_adj_mine(tile, mines)
 
-def mine(tile, facts):
-	adjacent = adj_tiles(tile)
+# def mine(tile, facts):
+# 	adjacent = adj_tiles(tile)
 
-	for adj_tile in adjacent:
-		if not sat(adj_tile):
-			if adj_tile in facts[Predicates.ONE]:
-				number = 1
-			if adj_tile in facts[Predicates.TWO]:
-				number = 2
-			if adj_tile in facts[Predicates.THREE]:
-				number = 3
+# 	for adj_tile in adjacent:
+# 		if not sat(adj_tile):
+# 			if adj_tile in facts[Predicates.ONE]:
+# 				number = 1
+# 			if adj_tile in facts[Predicates.TWO]:
+# 				number = 2
+# 			if adj_tile in facts[Predicates.THREE]:
+# 				number = 3
 
-			if number == num_adj(adj_tile) - adj_clicked(adj_clicked):
-				return True
+# 			if number == num_adj(adj_tile) - adj_clicked(adj_clicked):
+# 				return True
 
-	return False
+# 	return False
 
-def not_mine(tile):
-	adjacent = adj_tiles(tile)
+# def not_mine(tile):
+# 	adjacent = adj_tiles(tile)
 
-	for adj_tile in adjacent:
-		if sat(adj_tile):
-			return True
+# 	for adj_tile in adjacent:
+# 		if sat(adj_tile):
+# 			return True
 
-	return False
+# 	return False
 
-def diff(tile1, tile2):
-	return self.tile1 != self.tile2
+# def diff(tile1, tile2):
+# 	return self.tile1 != self.tile2
 
-def adj_tiles(tile):
-	i, j = tile
-	return [(i-1,j-1), (i-1,j), (i-1,j+1), (i,j-1), (i,j+1), (i+1,j-1), (i+1,j), (i+1,j+1)]
+# def adj_tiles(tile):
+# 	i, j = tile
+# 	return [(i-1,j-1), (i-1,j), (i-1,j+1), (i,j-1), (i,j+1), (i+1,j-1), (i+1,j), (i+1,j+1)]
 
-def adj(tile1, tile2):
-	i, j = tile1
-	k, l = tile2
-	if i == k:
-		if j == l - 1:
-			return True
-		if j == l + 1:
-			return True
-	if j == l:
-		if i == k - 1:
-			return True
-		if i == k + 1:
-			return True
+# def adj(tile1, tile2):
+# 	i, j = tile1
+# 	k, l = tile2
+# 	if i == k:
+# 		if j == l - 1:
+# 			return True
+# 		if j == l + 1:
+# 			return True
+# 	if j == l:
+# 		if i == k - 1:
+# 			return True
+# 		if i == k + 1:
+# 			return True
 
-	return False
+# 	return False
 
-def adj_mine(tile1, tile2, mines):
-	return adj(tile1, tile2) and tile1 in mines
+# def adj_mine(tile1, tile2, mines):
+# 	return adj(tile1, tile2) and tile1 in mines
 
-def adj_clicked(tile1, tile2, clicked):
-	return adj(tile1, tile2) and tile1 in clicked
+# def adj_clicked(tile1, tile2, clicked):
+# 	return adj(tile1, tile2) and tile1 in clicked
 
-def num_adj(tile):
-	i, j = tile
-	if (i == 0 or i == BOARD_SIZE-1) and (j == 0 or j == BOARD_SIZE-1):
-		return 3
+# def num_adj(tile):
+# 	i, j = tile
+# 	if (i == 0 or i == BOARD_SIZE-1) and (j == 0 or j == BOARD_SIZE-1):
+# 		return 3
 
-	if ((i == 0 or i == BOARD_SIZE-1) and j != 0 and j != BOARD_SIZE-1):
-		return 5
+# 	if ((i == 0 or i == BOARD_SIZE-1) and j != 0 and j != BOARD_SIZE-1):
+# 		return 5
 
-	if i != 0 and i != BOARD_SIZE-1 and j != 0 and j != BOARD_SIZE-1:
-		return 8
+# 	if i != 0 and i != BOARD_SIZE-1 and j != 0 and j != BOARD_SIZE-1:
+# 		return 8
 
-	print('bad tile')
+# 	print('bad tile')
 
-def num_adj_mines(tile, mines):
-	adjacent = adj_tiles(tile)
+# def num_adj_mines(tile, mines):
+# 	adjacent = adj_tiles(tile)
 
-	count = 0
-	for adj_tile in adjacent:
-		if adj_tile in mines:
-			count += 1
+# 	count = 0
+# 	for adj_tile in adjacent:
+# 		if adj_tile in mines:
+# 			count += 1
 
-	return count
+# 	return count
 
-def num_adj_clicked(tile, clicked):
-	adjacent = adj_tiles(tile)
+# def num_adj_clicked(tile, clicked):
+# 	adjacent = adj_tiles(tile)
 
-	count = 0
-	for adj_tile in adjacent:
-		if adj_tile in clicked:
-			count += 1
+# 	count = 0
+# 	for adj_tile in adjacent:
+# 		if adj_tile in clicked:
+# 			count += 1
 
-	return count
+# 	return count
 
 # class Clicked:
 #     def __init__(self, tile):
