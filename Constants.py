@@ -1,8 +1,8 @@
-BOARD_SIZE = 4
+# BOARD_SIZE = 4
 MINE_VAL = float('inf')
 
-MINE_LOCATIONS = [(0, 0), (1, 2)]  # , (2, 1)]
-NUM_MINES = len(MINE_LOCATIONS)
+# MINE_LOCATIONS = [(0, 0), (1, 2)]  # , (2, 1)]
+# NUM_MINES = len(MINE_LOCATIONS)
 
 WINDOW_HEIGHT = 400
 WINDOW_WIDTH = 400

@@ -130,7 +130,7 @@ class Graphics(tk.Tk):
 		# self.game_over_frame.attributes('-alpha', 0.5)
 		self.game_over_frame.lift()
 		if win_or_lose == -1:
-			self.game_over.configure(text='GAME OVER')
+			self.game_over.configure(text='YOU LOST :(')
 
 		if win_or_lose == 1:
 			self.game_over.configure(text='YOU WON! :)')
